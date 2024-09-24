@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2252279319084338864}
   - component: {fileID: 7534936637963927522}
   - component: {fileID: 6672640611868467429}
-  - component: {fileID: 7779484564572745741}
+  - component: {fileID: 2242890678357247631}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6811484657744869204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5260525, y: -5.9897385, z: -13.118373}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!143 &7779484564572745741
+--- !u!143 &2242890678357247631
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
