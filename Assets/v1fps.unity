@@ -3887,7 +3887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3248db90896a6f46a0cdb09d671a88f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.27
+      value: 0.271
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3248db90896a6f46a0cdb09d671a88f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3895,7 +3895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3248db90896a6f46a0cdb09d671a88f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.53
+      value: 0.566
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b3248db90896a6f46a0cdb09d671a88f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4983,7 +4983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2252279319084338864, guid: af65d3094e49d604d82a8f633922ff0b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2252279319084338864, guid: af65d3094e49d604d82a8f633922ff0b, type: 3}
       propertyPath: m_LocalScale.z
@@ -5028,6 +5028,10 @@ PrefabInstance:
     - target: {fileID: 2252279319084338864, guid: af65d3094e49d604d82a8f633922ff0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129199920768353671, guid: af65d3094e49d604d82a8f633922ff0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.689
       objectReference: {fileID: 0}
     - target: {fileID: 4546456368634695726, guid: af65d3094e49d604d82a8f633922ff0b, type: 3}
       propertyPath: near clip plane
