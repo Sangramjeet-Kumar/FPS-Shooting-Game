@@ -70,3 +70,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/Assets/Script/Interaction.cs
+/Assets/Script/Interaction.cs.meta
+/Assets/Script/Interaction.cs
+/Assets/Script/Keypad.cs
+/Assets/Script/Keypad.cs.meta
+/Assets/Script/Interactable/Smallbutton.cs
