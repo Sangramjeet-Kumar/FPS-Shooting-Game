@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Input;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,14 +12,12 @@ public class PlayerInteracts : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
     private PlayerUI playerUI;
-    private InputManager inputManager;
     // Start is called before the first frame update
     
     void Start()
     {
         cam = GetComponent<PlayerLook>().cam;
         playerUI = GetComponent<PlayerUI>();
-        inputManager = GetComponent<InputManager>();
     }
 
 
@@ -35,11 +32,7 @@ public class PlayerInteracts : MonoBehaviour
         {
             if (hitInfo.collider.GetComponent<Interaction>() != null)
             {
-                  Interaction interaction = hitInfo.collider.gameObject.GetComponent<Interaction>();
-               playerUI.UpdateText(interaction.promptmessage);
-                if (inputManager.OnFoot) { 
-                    interaction.BaseInteract();
-                }
+               playerUI.UpdateText(hitInfo.collider.GetComponent<Interaction>().promptmessage);
             }
         }
     }
