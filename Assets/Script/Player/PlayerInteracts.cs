@@ -28,7 +28,7 @@ public class PlayerInteracts : MonoBehaviour
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
 
-        RaycastHit hitInfo;
+        RaycastHit hitInfo;// variable to store our collision information
         if (Physics.Raycast(ray, out hitInfo, distance, mask))
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
