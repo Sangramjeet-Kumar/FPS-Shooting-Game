@@ -76,3 +76,12 @@ crashlytics-build.properties
 /Assets/Script/Keypad.cs
 /Assets/Script/Keypad.cs.meta
 /Assets/Script/Interactable/Smallbutton.cs
+# Remove the following lines if they are essential
+/Assets/Script/Interaction.cs
+/Assets/Script/Interaction.cs.meta
+/Assets/Script/Keypad.cs
+/Assets/Script/Keypad.cs.meta
+/Assets/Script/Interactable/Smallbutton.cs
+
+
+
