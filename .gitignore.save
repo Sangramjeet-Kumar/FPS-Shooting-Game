@@ -1,3 +1,15 @@
+# Remove the following lines if they are essential
+# /Assets/Script/Interaction.cs
+# /Assets/Script/Interaction.cs.meta
+# /Assets/Script/Keypad.cs
+# /Assets/Script/Keypad.cs.meta
+# /Assets/Script/Interactable/Smallbutton.cs
+# Remove the following lines if they are essential
+# /Assets/Script/Interaction.cs
+# /Assets/Script/Interaction.cs.meta
+# /Assets/Script/Keypad.cs
+# /Assets/Script/Keypad.cs.meta
+# /Assets/Script/Interactable/Smallbutton.cs
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
@@ -75,13 +87,9 @@ crashlytics-build.properties
 /Assets/Script/Interaction.cs
 /Assets/Script/Keypad.cs
 /Assets/Script/Keypad.cs.meta
-/Assets/Script/Interactable/Smallbutton.cs
-# Remove the following lines if they are essential
-/Assets/Script/Interaction.cs
-/Assets/Script/Interaction.cs.meta
-/Assets/Script/Keypad.cs
-/Assets/Script/Keypad.cs.meta
-/Assets/Script/Interactable/Smallbutton.cs
-
-
-
+/Assets/Script/Interactable/Smallbut
+# /Assets/Script/Interaction.cs
+# /Assets/Script/Interaction.cs.meta
+# /Assets/Script/Keypad.cs
+# /Assets/Script/Keypad.cs.meta
+# /Assets/Script/Interactable/Smallbutton.cs
