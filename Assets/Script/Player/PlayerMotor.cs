@@ -88,7 +88,7 @@ public class PlayerMotor : MonoBehaviour
     // Handle crouch logic
     private void HandleCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             isCrouching = !isCrouching;  // Toggle crouching state
 
