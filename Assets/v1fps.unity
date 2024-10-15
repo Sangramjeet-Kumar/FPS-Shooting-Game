@@ -13577,8 +13577,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
+  maxAmmo: 6
+  reloadTime: 1
   fpsCam: {fileID: 1959112448}
   muzzleFlash: {fileID: 832053992}
+  weaponAnimator: {fileID: 1720141484}
 --- !u!95 &1720141484
 Animator:
   serializedVersion: 5
@@ -13589,7 +13592,7 @@ Animator:
   m_GameObject: {fileID: 1596634980}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49a5b37af66cfa241a54d9acf1be18df, type: 2}
+  m_Controller: {fileID: 9100000, guid: 443e3cf4efc8a1442bb7164e7ba328ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
