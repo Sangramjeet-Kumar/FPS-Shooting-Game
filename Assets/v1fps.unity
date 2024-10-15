@@ -7182,10 +7182,13 @@ MonoBehaviour:
   frontHealthBar: {fileID: 207904363}
   backHealthBar: {fileID: 1587036844}
 <<<<<<< HEAD
+<<<<<<< HEAD
   healthText: {fileID: 0}
   overlay: {fileID: 237577616}
   duration: 2
   fadeSpeed: 0.5
+=======
+>>>>>>> parent of ab69755 (new terrain)
 =======
 >>>>>>> parent of ab69755 (new terrain)
 --- !u!1 &1679624057
