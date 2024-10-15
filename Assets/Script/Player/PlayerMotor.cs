@@ -6,7 +6,7 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    
+
     // Movement variables
     public float speed = 5f;  // Normal walking speed
     public float sprintMultiplier = 2f;  // Sprint speed multiplier
@@ -18,7 +18,7 @@ public class PlayerMotor : MonoBehaviour
 
     private bool isCrouching = false;
     private bool isGrounded;
-    
+
     // Physics variables
     public float gravity = -9.8f;  // Gravity value
     public float jumpHeight = 1f;  // Height of the jump
@@ -88,7 +88,7 @@ public class PlayerMotor : MonoBehaviour
     // Handle crouch logic
     private void HandleCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouching = !isCrouching;  // Toggle crouching state
 

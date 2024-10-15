@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,19 +11,22 @@ public class PlayerHealth : MonoBehaviour
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
-    void Start() 
+    // Start is called before the first frame update
+    void Start()
     {
-        health = maxHealth; 
+        health = maxHealth;
     }
+
+    // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
+        health = Mathf.Clamp(health,0,maxHealth);
         UpdateHealthUI();
         if (Input.GetKeyDown(KeyCode.A))
         {
             TakeDamage(Random.Range(5, 10));
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             RestoreHealth(Random.Range(5, 10));
         }
@@ -36,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         float fillB = backHealthBar.fillAmount;
         float hFraction = health / maxHealth;
         if (fillB > hFraction)
-        {
+        { 
             frontHealthBar.fillAmount = hFraction;
             backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
@@ -44,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
-        if (fillF < hFraction)
+        if (fillF < hFraction) 
         {
             backHealthBar.color = Color.green;
             backHealthBar.fillAmount = hFraction;
@@ -53,13 +55,14 @@ public class PlayerHealth : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
         }
+
     }
     public void TakeDamage(float damage)
     {
         health -= damage;
         lerpTimer = 0f;
     }
-    public void RestoreHealth (float healAmount)
+    public void RestoreHealth(float healAmount)
     {
         health += healAmount;
         lerpTimer = 0f;
