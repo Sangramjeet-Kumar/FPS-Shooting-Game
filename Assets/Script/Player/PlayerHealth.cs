@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     {
         health = Mathf.Clamp(health,0,maxHealth);
         UpdateHealthUI();
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             TakeDamage(Random.Range(5, 10));
         }
