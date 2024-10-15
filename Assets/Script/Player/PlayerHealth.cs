@@ -31,11 +31,11 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health,0,maxHealth);
+        health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
         if (overlay.color.a > 0)
         {
-            if (health < 30)
+            if (health < 10)
                 return;
             durationTimer += Time.deltaTime;
             if (durationTimer > duration)
@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
         float fillB = backHealthBar.fillAmount;
         float hFraction = health / maxHealth;
         if (fillB > hFraction)
-        { 
+        {
             frontHealthBar.fillAmount = hFraction;
             backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
             percentComplete = percentComplete * percentComplete;
             backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
-        if (fillF < hFraction) 
+        if (fillF < hFraction)
         {
             backHealthBar.color = Color.green;
             backHealthBar.fillAmount = hFraction;
