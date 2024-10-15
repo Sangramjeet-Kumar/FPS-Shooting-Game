@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public float range = 100f;
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,8 @@ public class Weapon : MonoBehaviour
             {
                 target.takeDamage(damage);
             }
+
+            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
 
     }
