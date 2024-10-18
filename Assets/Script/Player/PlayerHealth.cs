@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     private float health;
     private float lerpTimer;
+
     [Header("Health Bar")]
     public float maxHealth = 100f;
     public float chipSpeed = 2f;
@@ -21,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public float fadeSpeed;
 
     private float durationTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,13 +33,16 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
+        health = Mathf.Clamp(health, 0, maxHealth); // Ensure health is between 0 and maxHealth
         UpdateHealthUI();
+
         if (overlay.color.a > 0)
         {
             if (health < 10)
                 return;
+
             durationTimer += Time.deltaTime;
+
             if (durationTimer > duration)
             {
                 float tempAlpha = overlay.color.a;
@@ -46,12 +51,14 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+
     public void UpdateHealthUI()
     {
         Debug.Log(health);
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
         float hFraction = health / maxHealth;
+
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
@@ -72,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
+
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -79,11 +87,14 @@ public class PlayerHealth : MonoBehaviour
         durationTimer = 0f;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
     }
+
     public void RestoreHealth(float healAmount)
     {
-        health += healAmount;
+        // Restore health but clamp it so it doesn't exceed maxHealth
+        health = Mathf.Clamp(health + healAmount, 0, maxHealth);
         lerpTimer = 0f;
     }
+
     public void IncreaseHealth(int level)
     {
         maxHealth += (health * 0.01f) * ((100 - level) * 0.1f);

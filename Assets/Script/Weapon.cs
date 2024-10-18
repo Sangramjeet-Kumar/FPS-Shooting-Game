@@ -15,25 +15,36 @@ public class Weapon : MonoBehaviour
     public ParticleSystem muzzleFlash;
 
     public Animator weaponAnimator;
+    
+    // Reference to AmmoManager
+    public AmmoManager ammoManager;
 
     void Start()
     {
         currentAmmo = maxAmmo;
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (isReloading)
             return;
+
         if (currentAmmo <= 0)
         {
             StartCoroutine(Reload());
             return;
         }
+
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
+    }
+
+    public void AddAmmo(int ammoAmount)
+    {
+        currentAmmo = Mathf.Clamp(currentAmmo + ammoAmount, 0, maxAmmo);
+        Debug.Log("Picked up ammo: " + ammoAmount + ". Current ammo: " + currentAmmo);
     }
 
     IEnumerator Reload()
@@ -48,25 +59,36 @@ public class Weapon : MonoBehaviour
         weaponAnimator.SetBool("Reloading", false);
 
         currentAmmo = maxAmmo;
+        ammoManager.ReloadAmmo(maxAmmo); // Update ammo in AmmoManager
         isReloading = false;
     }
+
     void Shoot()
     {
         if (isReloading)
             return;
 
-        muzzleFlash.Play();
-        currentAmmo--;
-
-        RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (currentAmmo > 0)
         {
-            Debug.Log(hit.transform.name);
-            Enemy target = hit.transform.GetComponent<Enemy>();
-            if (target != null)
+            muzzleFlash.Play();
+            currentAmmo--;
+
+            ammoManager.UseAmmo(1); // Update ammo in AmmoManager
+
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
-                target.takeDamage(damage);
+                Debug.Log(hit.transform.name);
+                Enemy target = hit.transform.GetComponent<Enemy>();
+                if (target != null)
+                {
+                    target.takeDamage(damage);
+                }
             }
+        }
+        else
+        {
+            StartCoroutine(Reload());
         }
     }
 }
