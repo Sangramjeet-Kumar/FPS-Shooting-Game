@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/AmmoBox.cs.meta
 guid: a15632143cdec074da9326051a7aace5
+========
+guid: 66bbd5ceae652e7478e4ff3981c1bf2e
+>>>>>>>> Stashed changes:Assets/Script/Enemy.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
