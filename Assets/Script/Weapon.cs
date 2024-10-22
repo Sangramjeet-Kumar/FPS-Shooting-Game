@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    public GameObject impactEffect;
+    //public GameObject impactEffect;
 
     public Animator weaponAnimator;
 
@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
                 target.takeDamage(damage);
             }
 
-            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
 }
