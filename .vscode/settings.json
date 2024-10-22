@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FPS-Shooting-Game.sln"
+    "dotnet.defaultSolution": "FPS-Shooting-Game.sln",
+    "dotnet.preferCSharpExtension": true
 }
