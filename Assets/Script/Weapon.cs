@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -71,5 +72,10 @@ public class Weapon : MonoBehaviour
 
             //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
+    }
+
+    internal void AddAmmo(int ammoAmount)
+    {
+        throw new NotImplementedException();
     }
 }
