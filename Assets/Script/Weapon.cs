@@ -46,12 +46,14 @@ public class Weapon : MonoBehaviour
 
     public void AddAmmo(int ammoAmount)
     {
-        currentAmmo = Mathf.Clamp(currentAmmo + ammoAmount, 0, maxAmmo);        
+        currentAmmo = Mathf.Clamp(currentAmmo + ammoAmount, 0, maxAmmo);
+        Debug.Log("Picked up ammo: " + ammoAmount + ". Current ammo: " + currentAmmo);
     }
 
     IEnumerator Reload()
     {   
         isReloading = true;
+        Debug.Log("Reloading...");
 
         weaponAnimator.SetBool("Reloading", true);
 
@@ -61,7 +63,6 @@ public class Weapon : MonoBehaviour
 
         currentAmmo = maxAmmo;
         ammoManager.ReloadAmmo(maxAmmo); // Update ammo in AmmoManager
-
         isReloading = false;
 
     }
@@ -95,7 +96,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Reload());         
+            StartCoroutine(Reload());
         }
     }
 }
