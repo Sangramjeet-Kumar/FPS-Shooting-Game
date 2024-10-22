@@ -8,17 +8,12 @@ public class Weapon : MonoBehaviour
 
     public int maxAmmo = 10;
     private int currentAmmo;
-    public float reloadTime = 1f;
+    public float reloadTime = 8.267f;
     private bool isReloading = false;
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    //public GameObject impactEffect;
-
     public Animator weaponAnimator;
-
-   
-   // Reference to AmmoManager
     public AmmoManager ammoManager;
 
     void Start()
@@ -51,7 +46,7 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator Reload()
-    {   
+    {
         isReloading = true;
         Debug.Log("Reloading...");
 
@@ -64,12 +59,10 @@ public class Weapon : MonoBehaviour
         currentAmmo = maxAmmo;
         ammoManager.ReloadAmmo(maxAmmo); // Update ammo in AmmoManager
         isReloading = false;
-
     }
-   
+
     void Shoot()
     {
-
         if (isReloading)
             return;
 
@@ -79,7 +72,10 @@ public class Weapon : MonoBehaviour
             weaponAnimator.SetTrigger("recoil");
             currentAmmo--;
 
-            ammoManager.UseAmmo(1); // Update ammo in AmmoManager
+            if (ammoManager != null)
+            {
+                ammoManager.UseAmmo(1); // Update ammo in AmmoManager
+            }
 
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -91,8 +87,6 @@ public class Weapon : MonoBehaviour
                     target.takeDamage(damage);
                 }
             }
-
-            //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
         else
         {
