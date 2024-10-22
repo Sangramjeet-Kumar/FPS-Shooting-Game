@@ -13,16 +13,18 @@ public class Weapon : MonoBehaviour
 
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    public GameObject impactEffect;
+    //public GameObject impactEffect;
 
     public Animator weaponAnimator;
-    
-    // Reference to AmmoManager
+
+   
+   // Reference to AmmoManager
     public AmmoManager ammoManager;
 
     void Start()
     {
         currentAmmo = maxAmmo;
+        weaponAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -49,7 +51,7 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator Reload()
-    {
+    {   
         isReloading = true;
         Debug.Log("Reloading...");
 
@@ -62,16 +64,19 @@ public class Weapon : MonoBehaviour
         currentAmmo = maxAmmo;
         ammoManager.ReloadAmmo(maxAmmo); // Update ammo in AmmoManager
         isReloading = false;
-    }
 
+    }
+   
     void Shoot()
     {
+
         if (isReloading)
             return;
 
         if (currentAmmo > 0)
         {
             muzzleFlash.Play();
+            weaponAnimator.SetTrigger("recoil");
             currentAmmo--;
 
             ammoManager.UseAmmo(1); // Update ammo in AmmoManager
@@ -87,7 +92,7 @@ public class Weapon : MonoBehaviour
                 }
             }
 
-            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
         else
         {

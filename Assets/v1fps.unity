@@ -14409,7 +14409,7 @@ MonoBehaviour:
   fpsCam: {fileID: 1959112448}
   muzzleFlash: {fileID: 832053992}
   weaponAnimator: {fileID: 1720141484}
-  ammoManager: {fileID: 0}
+  ammoManager: {fileID: 1720141485}
 --- !u!95 &1720141484
 Animator:
   serializedVersion: 5
