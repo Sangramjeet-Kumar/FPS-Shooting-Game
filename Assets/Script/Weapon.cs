@@ -75,17 +75,25 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         if (isReloading)
+        {
+            Debug.Log("Cannot shoot while reloading.");
             return;
+        }
 
         if (currentAmmo > 0)
         {
+            Debug.Log("Shooting...");
             muzzleFlash.Play();
             weaponAnimator.SetTrigger("recoil");
 
-            // Play gunshot sound
-            if (gunshotSound != null)
+            // Play gunshot sound only if it's assigned
+            if (gunshotSound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(gunshotSound);
+            }
+            else
+            {
+                Debug.LogError("Gunshot sound or AudioSource is not assigned!");
             }
 
             currentAmmo--;
@@ -98,17 +106,20 @@ public class Weapon : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log("Hit: " + hit.transform.name);
                 Enemy target = hit.transform.GetComponent<Enemy>();
                 if (target != null)
                 {
+                    Debug.Log("Dealing damage to target...");
                     target.takeDamage(damage);
                 }
             }
         }
         else
         {
+            Debug.Log("Out of ammo, reloading...");
             StartCoroutine(Reload());
         }
     }
+
 }

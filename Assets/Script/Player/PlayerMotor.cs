@@ -23,6 +23,14 @@ public class PlayerMotor : MonoBehaviour
     public float gravity = -9.8f;  // Gravity value
     public float jumpHeight = 1f;  // Height of the jump
 
+    // Audio variables
+    public AudioSource audioSource;
+    public AudioClip walkSound;
+    public AudioClip sprintSound;
+    public AudioClip crouchSound;
+    public AudioClip jumpSound;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -46,61 +54,103 @@ public class PlayerMotor : MonoBehaviour
     // Process player movement based on input from InputManager.cs
     public void ProcessMove(Vector2 input)
     {
-        // Set the base speed for this frame
         float currentSpeed = speed;
 
-        // Apply sprint multiplier if Left Shift is pressed (and not crouching)
         if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
         {
             currentSpeed *= sprintMultiplier;
+
+            // Play sprint sound
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = sprintSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else if (input.magnitude > 0) // Walking
+        {
+            // Play walking sound
+            if (!audioSource.isPlaying || audioSource.clip != walkSound)
+            {
+                audioSource.clip = walkSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            // Stop audio when not moving
+            audioSource.Stop();
         }
 
-        // Apply crouch speed multiplier if crouching
         if (isCrouching)
         {
             currentSpeed *= crouchSpeedMultiplier;
+
+            // Play crouch sound
+            if (!audioSource.isPlaying || audioSource.clip != crouchSound)
+            {
+                audioSource.clip = crouchSound;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
 
-        // Calculate movement direction
         Vector3 moveDirection = new Vector3(input.x, 0, input.y);
         controller.Move(transform.TransformDirection(moveDirection) * currentSpeed * Time.deltaTime);
 
-        // Apply gravity to vertical velocity
         playerVelocity.y += gravity * Time.deltaTime;
-
-        // Move the character vertically
         controller.Move(playerVelocity * Time.deltaTime);
-
-        // Debug log for vertical velocity
-        Debug.Log("Vertical Velocity: " + playerVelocity.y);
     }
+
 
     // Handle jumping logic
     public void Jump()
     {
         if (isGrounded)
         {
-            // Calculate jump velocity
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            // Play jump sound
+            if (audioSource != null && jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
         }
     }
+
 
     // Handle crouch logic
     private void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            isCrouching = !isCrouching;  // Toggle crouching state
+            isCrouching = !isCrouching;
 
-            // Adjust player height based on crouch state
             if (isCrouching)
             {
                 controller.height = crouchHeight;
+
+                // Play crouch sound
+                if (!audioSource.isPlaying || audioSource.clip != crouchSound)
+                {
+                    audioSource.clip = crouchSound;
+                    audioSource.loop = true;
+                    audioSource.Play();
+                }
             }
             else
             {
                 controller.height = standingHeight;
+
+                // Stop crouch sound
+                if (audioSource.isPlaying && audioSource.clip == crouchSound)
+                {
+                    audioSource.Stop();
+                }
             }
         }
     }
+
 }
