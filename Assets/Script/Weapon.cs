@@ -16,10 +16,15 @@ public class Weapon : MonoBehaviour
     public Animator weaponAnimator;
     public AmmoManager ammoManager;
 
+    public AudioClip gunshotSound; // Add this for the gunshot sound
+    public AudioClip reloadSound; // Add this for the reload sound
+    private AudioSource audioSource;
+
     void Start()
     {
         currentAmmo = maxAmmo;
         weaponAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,6 +57,12 @@ public class Weapon : MonoBehaviour
 
         weaponAnimator.SetBool("Reloading", true);
 
+        // Play reload sound
+        if (reloadSound != null)
+        {
+            audioSource.PlayOneShot(reloadSound);
+        }
+
         yield return new WaitForSeconds(reloadTime);
 
         weaponAnimator.SetBool("Reloading", false);
@@ -70,6 +81,13 @@ public class Weapon : MonoBehaviour
         {
             muzzleFlash.Play();
             weaponAnimator.SetTrigger("recoil");
+
+            // Play gunshot sound
+            if (gunshotSound != null)
+            {
+                audioSource.PlayOneShot(gunshotSound);
+            }
+
             currentAmmo--;
 
             if (ammoManager != null)
