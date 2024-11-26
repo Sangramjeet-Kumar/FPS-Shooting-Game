@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy1 : MonoBehaviour
 {
-    public float health = 50f;
+    public float health = 200f;
     public void takeDamage(float amount)
     {
         health -= amount;
@@ -31,7 +31,7 @@ public class Enemy1 : MonoBehaviour
     public float sightDistance = 20f;
     public float fieldOfView = 85f;
 
-    public float eyeHeight;
+    public float eyeHeight = 4.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,33 +45,27 @@ public class Enemy1 : MonoBehaviour
     void Update()
     {
         CanSeePlayer();
+        currentState = stateMachine.activeState.ToString();
     }
 
     public bool CanSeePlayer()
+{
+    if (player != null)
     {
-        if (player != null)
+        //is the player close enough to be seen?
+        if (Vector3.Distance(transform.position, player.transform.position) < sightDistance)
         {
-            //is the player close enough to be seen?
-            if (Vector3.Distance(transform.position, player.transform.position) < sightDistance)
-            {
-                Vector3 targetDirection = player.transform.position - transform.position- (Vector3.up * eyeHeight);
-                float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
-                if (angleToPlayer >= -fieldOfView && angleToPlayer <= fieldOfView)
-                {
-                    Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), targetDirection);
-                    RaycastHit hitInfo = new RaycastHit();
+            Vector3 targetDirection = player.transform.position - transform.position - (Vector3.up * eyeHeight);
+            float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
 
-                    if (Physics.Raycast(ray, out hitInfo, sightDistance))
-                    {
-                        if (hitInfo.transform.gameObject == player)
-                        {
-                            return true;
-                        }
-                    }
-                    Debug.DrawRay(ray.origin, ray.direction * sightDistance);
-                }
+            if (angleToPlayer >= -fieldOfView && angleToPlayer <= fieldOfView)
+            {
+                Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), targetDirection);
+                Debug.DrawRay(ray.origin, ray.direction * sightDistance);
+                return true;
             }
         }
-        return false;
     }
+    return false;
+}
 }
