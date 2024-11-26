@@ -6,6 +6,7 @@ public class PatrolState : BaseState
 {
     //track which waypoint we are currently targeting.
     public int waypointIndex;
+    public float waitTimer;
 
     public override void Enter()
     {

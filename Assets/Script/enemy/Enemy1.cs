@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy1 : MonoBehaviour
 {
-    public float health = 200f;
+    public float health = 20f;
     public void takeDamage(float amount)
     {
         health -= amount;

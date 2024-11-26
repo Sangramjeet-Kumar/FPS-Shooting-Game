@@ -27,9 +27,7 @@ public class PlayerMotor : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip walkSound;
     public AudioClip sprintSound;
-    public AudioClip crouchSound;
     public AudioClip jumpSound;
-
 
     void Start()
     {
@@ -49,6 +47,12 @@ public class PlayerMotor : MonoBehaviour
 
         // Handle crouch input
         HandleCrouch();
+
+        // Handle jump input
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
     }
 
     // Process player movement based on input from InputManager.cs
@@ -56,12 +60,13 @@ public class PlayerMotor : MonoBehaviour
     {
         float currentSpeed = speed;
 
-        if (Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        // Sprint sound and speed when "W" and "SHIFT" are pressed simultaneously
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift) && !isCrouching)
         {
             currentSpeed *= sprintMultiplier;
 
             // Play sprint sound
-            if (!audioSource.isPlaying)
+            if (!audioSource.isPlaying || audioSource.clip != sprintSound)
             {
                 audioSource.clip = sprintSound;
                 audioSource.loop = true;
@@ -81,20 +86,15 @@ public class PlayerMotor : MonoBehaviour
         else
         {
             // Stop audio when not moving
-            audioSource.Stop();
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
         if (isCrouching)
         {
             currentSpeed *= crouchSpeedMultiplier;
-
-            // Play crouch sound
-            if (!audioSource.isPlaying || audioSource.clip != crouchSound)
-            {
-                audioSource.clip = crouchSound;
-                audioSource.loop = true;
-                audioSource.Play();
-            }
         }
 
         Vector3 moveDirection = new Vector3(input.x, 0, input.y);
@@ -104,12 +104,12 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-
     // Handle jumping logic
     public void Jump()
     {
         if (isGrounded)
         {
+            // Apply jump physics
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
             // Play jump sound
@@ -119,7 +119,6 @@ public class PlayerMotor : MonoBehaviour
             }
         }
     }
-
 
     // Handle crouch logic
     private void HandleCrouch()
@@ -131,26 +130,11 @@ public class PlayerMotor : MonoBehaviour
             if (isCrouching)
             {
                 controller.height = crouchHeight;
-
-                // Play crouch sound
-                if (!audioSource.isPlaying || audioSource.clip != crouchSound)
-                {
-                    audioSource.clip = crouchSound;
-                    audioSource.loop = true;
-                    audioSource.Play();
-                }
             }
             else
             {
                 controller.height = standingHeight;
-
-                // Stop crouch sound
-                if (audioSource.isPlaying && audioSource.clip == crouchSound)
-                {
-                    audioSource.Stop();
-                }
             }
         }
     }
-
 }

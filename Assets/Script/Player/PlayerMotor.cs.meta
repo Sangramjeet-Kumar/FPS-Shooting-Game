@@ -3,7 +3,12 @@ guid: efb89cbadceae8948acd4533542a783f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - walkSound: {fileID: 8300000, guid: 39124562bd5a6d449870ac37c5ca46d5, type: 3}
+  - sprintSound: {fileID: 8300000, guid: e3f810588f2cb3a41b598e34e6a63319, type: 3}
+  - crouchSound: {fileID: 8300000, guid: 83dee87ebac516b4996a08d7cedb00e0, type: 3}
+  - jumpSound: {fileID: 8300000, guid: 62d8e99b8384e9144854b6016e4ea4b1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
