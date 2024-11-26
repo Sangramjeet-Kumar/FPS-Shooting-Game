@@ -107,7 +107,7 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 Debug.Log("Hit: " + hit.transform.name);
-                Enemy target = hit.transform.GetComponent<Enemy>();
+                Enemy1 target = hit.transform.GetComponent<Enemy1>();
                 if (target != null)
                 {
                     Debug.Log("Dealing damage to target...");
