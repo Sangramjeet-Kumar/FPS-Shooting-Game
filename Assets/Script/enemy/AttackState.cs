@@ -24,7 +24,7 @@ public class AttackState : BaseState
             losePlayerTimer = 0;
             moveTimer += Time.deltaTime;
 
-            if (moveTimer > Random.Range(3, 7))
+            if (moveTimer > Random.Range(1, 7))
             {
                 enemy1.Agent.SetDestination(enemy1.transform.position + (Random.insideUnitSphere * 5));
                 moveTimer = 0;
